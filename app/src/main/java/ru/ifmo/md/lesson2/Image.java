@@ -4,6 +4,36 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
+public class Image extends SurfaceView {
+    private SurfaceHolder holder;
+    private Bitmap bitmap;
+
+
+    public Image(Context context) {
+        super(context);
+        holder = getHolder();
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.source);
+    }
+
+    @Override
+    public void onDraw(Canvas canvas){
+        holder.lockCanvas();
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        holder.unlockCanvasAndPost(canvas);
+    }
+}
+
+/*package ru.ifmo.md.lesson2;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.util.Log;
 import android.view.Surface;
@@ -12,7 +42,7 @@ import android.view.SurfaceView;
 
 /**
  * Created by Anton on 24.09.2014.
- */
+
 
 public class Image extends SurfaceView implements Runnable {
     SurfaceHolder holder;
@@ -91,3 +121,4 @@ public class Image extends SurfaceView implements Runnable {
         canvas.scale(5, 5);
     }
 }
+*/
